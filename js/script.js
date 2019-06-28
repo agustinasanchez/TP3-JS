@@ -54,9 +54,60 @@ const quantitySalesComponent = (c) =>{
 
 console.log(quantitySalesComponent("Monitor ASC 543"))
 
-//1-c
+//1-c 
+    
 
-const sellerOfTheMonth = (month, year) =>{
+//1-d
+
+ const salesMonth = (month, year) => {
+  let sumMonth = 0
+  for (let index = 0; index < franchise.componentsSold.length; index++) {
+      let components = franchise.componentsSold[index].components
+      if (franchise.componentsSold[index].date.getMonth() + 1 == month && franchise.componentsSold[index].date.getFullYear() == year) {
+          sumMonth = sumMonth + machinePrice(components)
+      }
+
+  }
+  return sumMonth
 }
+console.log(salesMonth(1, 2019)); // 1250
 
-console.log(sellerOfTheMonth(1, 2019) );
+//1-e
+
+const salesBySeller = name => {
+  let sellingSum = 0
+  franchise.componentsSold.forEach(e => {
+    if(e.seller === name){
+      let totalSales = machinePrice(e.components)
+      sellingSum += totalSales
+    }
+  })
+  
+  return sellingSum
+}
+console.log(salesBySeller("Ada"));
+
+//1-g
+
+const wereThereSales = (month, year) => {
+  return salesMonth(month, year) > 0;
+  }
+  
+  console.log('hubo ventas?:' , wereThereSales(3, 2019));
+
+//3-a
+  const renderPerMonth = () => {
+    
+    let months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+    let monthsNumber= [1,2,3,4,5,6,7,8,9,10,11,12]
+    let perMonth= 0 
+    
+    for (let i= 0; i< months.length; i++) {
+      
+        perMonth= console.log('Total de '+ months[i] + ': ' + salesMonth(monthsNumber[i], 2019));
+    }
+      return perMonth   
+      
+    }
+    
+    renderPerMonth()
