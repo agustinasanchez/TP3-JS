@@ -10,7 +10,7 @@ var franchise = {
       { date: new Date(2019, 0, 10), seller: "Ada", components: ["Monitor ASC 543", "Motherboard ASUS 1200"] },
       { date: new Date(2019, 0, 12), seller: "Grace", components: ["Monitor GPRS 3000", "Motherboard ASUS 1200"] }
     ],
-    
+
     prices: [
       { component: "Monitor GPRS 3000", price: 200 },
       { component: "Motherboard ASUS 1500", price: 120 },
@@ -88,6 +88,7 @@ const salesBySeller = name => {
 console.log(salesBySeller("Ada"));
 
 //1-f componenteMasVendido():
+
 const bestSellerComponent = () => {
   let sellingComponent = []
   let nameComponent
