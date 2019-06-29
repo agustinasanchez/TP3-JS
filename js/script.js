@@ -22,7 +22,6 @@ var franchise = {
       { component: "RAM Quinston", price: 110 },
       { component: "RAM Quinston Fury", price: 230 },
     ]
-  
 };
 
 //1-a precioMaquina(componentes):
@@ -55,7 +54,24 @@ const quantitySalesComponent = (c) =>{
 console.log(quantitySalesComponent("Monitor ASC 543"))
 
 //1-c vendedoraDelMes(mes, año)
+const BestSellerMonth = (month, year) => {
+  let sales = franchise.componentsSold.filter(({date}) => date.getMonth() + 1 === month && date.getFullYear() === year)
+  
+  const allSellers = []
+  franchise.sellers.forEach(s => {
+    let aux = {name: s, total: 0}
+    sales.forEach(x => {
+      if(x.seller === s){
+        aux.total += machinePrice(x.components)
+      }
+    })
+    allSellers.push(aux)
+  })
     
+  console.log(allSellers);
+}
+
+console.log( BestSellerMonth(1, 2019) ); // "Ada" (vendio por $670, una máquina de $320 y otra de $350)
 
 //1-d ventasMes(mes, año):
 
@@ -85,7 +101,7 @@ const salesBySeller = name => {
   
   return sellingSum
 }
-console.log(salesBySeller("Ada"));
+console.log(salesBySeller("Grace"));
 
 //1-f componenteMasVendido():
 
@@ -104,7 +120,7 @@ const bestSellerComponent = () => {
 
 console.log(bestSellerComponent() ); // Monitor GPRS 3000
 
-//1-g
+//1-g huboVentas(mes, año)
 
 const wereThereSales = (month, year) => {
   return salesMonth(month, year) > 0;
@@ -112,7 +128,7 @@ const wereThereSales = (month, year) => {
   
   console.log('hubo ventas?:' , wereThereSales(3, 2019));
 
-//3-a
+//3-a renderPorMes(): 
   const renderPerMonth = () => {
     
     let months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
