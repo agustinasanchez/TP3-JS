@@ -1,1 +1,74 @@
-/* No CSS *//*# sourceMappingURL=styles.css.map */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  background-color: #1D2B64;
+  /* fallback for old browsers */
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-gradient(linear, left top, right top, from(#F8CDDA), to(#1D2B64));
+  background: linear-gradient(to right, #F8CDDA, #1D2B64);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+#modalWrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 50%;
+  height: 50%;
+  z-index: 990;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#botonModal {
+  background-color: #1D2B64;
+  border-radius: 3px;
+  color: #F8CDDA;
+  border: none;
+  font-size: 14px;
+}
+
+#botonModal:hover {
+  background-color: #414e83;
+}
+
+#modalContainer {
+  background-color: #fff;
+  height: 150px;
+  width: 220px;
+  border-radius: 5px;
+}
+
+.displayNone {
+  display: none !important;
+}
+/*# sourceMappingURL=styles.css.map */
