@@ -62,10 +62,8 @@ const BestSellerMonth = (month, year) => {
     let aux = {name: s, total: 0}
     sales.forEach(x => {
       if(x.seller === s){
-        aux.total += machinePrice(x.components)
-      }
-    })
-    allSellers.push(aux)
+        aux.total += machinePrice(x.components)} })
+   allSellers.push(aux)
   })
     
   console.log(allSellers);

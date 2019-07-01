@@ -20,8 +20,46 @@ time, mark, audio, video {
   list-style: none;
 }
 
-header{
+$font: 'Roboto Mono', monospace;
+
+$colorInput: #fff;
+$colorBack: #085f63;
+$color-darkTitle: #292830;
+$color-textHeader: #103c42;
+
+.container{
+  background-image: url(../images/banner.jpg);
+  justify-content: center;
+  width: 100%;
+  height: 300px;
+
+}
+
+.main-banner {
+  margin: auto;
+  overflow: hidden;
+  width: 100%;
+  min-width: 600px;
+  max-width: 900px;
+  h1{
+    font-family: $font;
+    color: $colorInput;
+    font-size: 56px;
+    display: flex;
     justify-content: center;
-    width: 90%;
-    height: 300px;
+    margin: 56px;
+  }
+    .subtitle {
+        display: flex;
+        justify-content: center;
+        color: $colorInput;
+        font-size: 48px;
+        font-family: $font;
+    }
+}
+
+.tableSales {
+    border: 1px solid black;
+    width: 80%;
+
 }
