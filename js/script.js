@@ -205,6 +205,18 @@ return sales
 
 console.log('sales for branch Centro', salesForBranch('Centro'));
 
+const salesPerSellerOrBranch = (param) => {
+  let sellerOrBranch = 0
+  franchise.sales.forEach( e => {
+    if(e.seller === param || e.branch === param){
+      let totalSales = machinePrice(e.components)
+      sellerOrBranch += totalSales
+    }
+  })
+  return sellerOrBranch
+ // console.log(sellerOrBranch)
+}
+
 const branchOfTheMonth = (month, year) => {
   let countbranch = franchise.sales.filter(sale => sale.date.getMonth() + 1 === month && sale.date.getFullYear() === year);
   return franchise.branch.map(branch => ({
@@ -218,7 +230,6 @@ const branchOfTheMonth = (month, year) => {
 console.log('best branch was: ' + branchOfTheMonth(1, 2019));
 
 const renderPerMonth = () => {
-  
   let months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
   let monthsNumber= [1,2,3,4,5,6,7,8,9,10,11,12]
   let perMonth= 0 
@@ -227,8 +238,17 @@ const renderPerMonth = () => {
     
       perMonth= console.log('Total de '+ months[i] + ': ' + salesMonth(monthsNumber[i], 2019));
   }
-    return perMonth   
-    
-  }
-  
-  renderPerMonth()
+  return perMonth
+}
+renderPerMonth()
+
+const renderPerBranch = () => {
+  let saleBranch
+  franchise.branch.forEach(branch => {
+    saleBranch = salesPerSellerOrBranch(branch)
+    console.log(`El importe total vendido en la sucursal de ${branch} es: $${saleBranch}`)
+  })
+  return saleBranch
+}
+
+renderPerBranch()

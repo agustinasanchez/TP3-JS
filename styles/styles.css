@@ -17,10 +17,14 @@ time, mark, audio, video {
   font: inherit;
   font-size: 100%;
   vertical-align: baseline;
-  list-style: none;
 }
 
-.container {
+body {
+  font-family: "Roboto Mono", monospace;
+  background: #BA5370;
+}
+
+body .container {
   background-image: url(../images/banner.jpg);
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -29,15 +33,13 @@ time, mark, audio, video {
   height: 300px;
 }
 
-.main-banner {
+body .container .main-banner {
   margin: auto;
   overflow: hidden;
   width: 100%;
-  min-width: 600px;
-  max-width: 900px;
 }
 
-.main-banner h1 {
+body .container .main-banner h1 {
   font-family: "Roboto Mono", monospace;
   color: #fff;
   font-size: 56px;
@@ -50,7 +52,7 @@ time, mark, audio, video {
   margin: 56px;
 }
 
-.main-banner .subtitle {
+body .container .main-banner .subtitle {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -60,5 +62,45 @@ time, mark, audio, video {
   color: #fff;
   font-size: 48px;
   font-family: "Roboto Mono", monospace;
+}
+
+body .main-section {
+  margin: 24px;
+}
+
+body .main-section .newSale {
+  margin: 16px;
+  display: none;
+  width: 45%;
+  position: absolute;
+  background-color: #BA5370;
+}
+
+body .main-section .newSale .buttom1 {
+  border: aqua;
+}
+
+body .main-section .newSale p {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+body .main-section table {
+  background-color: #85b1d4;
+  width: 100%;
+  text-align: center;
+}
+
+body .main-section table td {
+  border-right: 1px solid aqua;
+  border-left: 1px solid aqua;
+  font-weight: normal;
+  margin-top: 20px;
+}
+
+body .main-section table .itemTd {
+  background-color: aqua;
+  font-weight: bold;
+  color: #af1b1b;
 }
 /*# sourceMappingURL=styles.css.map */
