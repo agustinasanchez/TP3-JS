@@ -1,4 +1,4 @@
-var franchise = {
+let franchise = {
     
     sellers: ["Ada", "Grace", "Hedy", "Sheryl"],
 
@@ -28,18 +28,22 @@ var franchise = {
     ],
 
     prices: [
-      { component: "Monitor GPRS 3000", price: 200 },
-      { component: "Motherboard ASUS 1500", price: 120 },
-      { component: "Monitor ASC 543", price: 250 },
-      { component: "Motherboard ASUS 1200", price: 100 },
-      { component: "Motherboard MZI", price: 30 },
-      { component: "HDD Toyiva", price: 90 },
-      { component: "HDD Wezter Dishital", price: 75 },
-      { component: "RAM Quinston", price: 110 },
-      { component: "RAM Quinston Fury", price: 230 },
+      { id: "0001",component: "Monitor GPRS 3000", price: 200 },
+      { id: "0002",component: "Motherboard ASUS 1500", price: 120 },
+      { id: "0003",component: "Monitor ASC 543", price: 250 },
+      { id: "0004",component: "Motherboard ASUS 1200", price: 100 },
+      { id: "0005",component: "Motherboard MZI", price: 30 },
+      { id: "0006",component: "HDD Toyiva", price: 90 },
+      { id: "0007",component: "HDD Wezter Dishital", price: 75 },
+      { id: "0008",component: "RAM Quinston", price: 110 },
+      { id: "0009",component: "RAM Quinston Fury", price: 230 },
     ]
   
 };
+
+//let price = []
+//let branch = []
+//let sellers = []
 
 
 //1-a
@@ -103,6 +107,7 @@ console.log(quantitySalesComponent("Monitor ASC 543"))
 
 console.log('best seller was: ' + bestSellerMonth(2, 2019).seller + ', with sales for: ' + bestSellerMonth(2, 2019).totalAmount);*/
 
+//1-c
 const bestSellerMonth = (month, year) => {
   const fileteredSales = franchise.sales.filter(sale => sale.date.getMonth() + 1 === month && sale.date.getFullYear() === year);
   return franchise.sellers
@@ -183,6 +188,131 @@ franchise.sales.forEach(sold => {
 });
 console.log(franchise.sales);
 
+///*Nueva Venta
+
+/*const CreateTable = () => {
+  let container = document.getElementById('record')
+  container.innerHTML = ""
+
+  shop.salesList.map(function(e){
+      //console.log(e)
+  let trSale = document.createElement('tr')
+      //console.log(trSale)
+  let tdDate = document.createElement('td')
+      
+  tdDate.innerText =`${e.date.getMonth() + 1}/${e.date.getFullYear()}`
+  trSale.appendChild(tdDate)
+  //console.log(tdDate)
+  let tdSeller = document.createElement('td')
+  tdSeller.innerText = e.nameSeller
+  trSale.appendChild(tdSeller)
+  //console.log(tdSeller)
+  let tdComponents = document.createElement('td')
+  tdComponents.innerText = e.components
+  trSale.appendChild(tdComponents)
+  //console.log(e.components)
+  
+  let tdBranch = document.createElement('td')
+  tdBranch.innerText = e.branch
+  trSale.appendChild(tdBranch)
+  //totalPrice(e.components)
+
+  let tdTotalPrice = document.createElement('td')
+  tdTotalPrice.innerText = totalPrice(e.components)
+  trSale.appendChild(tdTotalPrice)
+  //console.log(tdBranch)
+  container.appendChild(trSale)
+  
+  })
+
+  
+  
+  
+}
+ 
+//const allComponents = shop.priceList.map(({component}) => component)
+const showOptions = () => {
+  let divShow = document.getElementById('newSale')
+  //console.log(divShow)
+  
+  divShow.style.display = 'block'
+  
+  
+  
+}
+//function sale (date, nameSeller, components, branch){
+
+  //this.date = date
+  //this.nameSeller = nameSeller
+ // this.components = components
+ // this.branch = branch
+  
+//}
+
+const newSale = () => {
+  let sentItem = document.getElementById('sent')
+   //console.log(sentItem)
+  let sale =  { date:"", nameSeller: "", components: [], branch: ""}
+  let components = document.getElementById('components')
+  let selectedOptions = Array.from(components.selectedOptions)
+  sale.components = selectedOptions.map(function(e){
+      return e.value
+  })
+  let today = new Date
+  sale.date = new Date (today.getFullYear(),today.getMonth(),today.getDate())
+  //console.log(sale.date)
+  let nameSeller = document.getElementById('sellers')
+  sale.nameSeller = nameSeller.value
+  //console.log(sale.nameSeller)
+  let branch = document.getElementById('branch')
+  sale.branch = branch.value
+  sentItem = shop.salesList.push(sale)
+ // debugger;
+  //console.log(sale)
+  CreateTable()
+
+}*/
+   
+
+
+  
+  const quantitySalesComponents = (component) =>{
+      let counter = 0
+      franchise.sales.map(function(e){
+      e.components.map(function(i){
+       if(component === i){
+       counter = counter + 1
+       }
+    })
+   })
+      return counter
+      
+    }
+    console.log(quantitySalesComponents("Monitor ASC 543"))
+
+   const totalPrice = (components) => {
+      let sumPrice = 0
+      //shop.salesList.map(function(e){
+          components.map(function(comp){
+             // console.log(comp)
+          
+          
+              shop.priceList.map(function(i){
+                  // console.log(i)
+                  if(comp === i.component){
+                      sumPrice += i.price
+                  }
+                  //console.log(sumPrice) })
+              })
+          })
+          //console.log (sumPrice)
+          return sumPrice
+
+      //})
+   }
+
+//totalPrice()
+
 // 2-a
 const salesForBranch = (branch) => {
   const sales = franchise.sales;
@@ -193,8 +323,19 @@ const salesForBranch = (branch) => {
 
 console.log('sales for branch Centro', salesForBranch('Centro'));
 
+//2-c
 
+const branchOfTheMonth = (month, year) => {
+  let countbranch = franchise.sales.filter(sale => sale.date.getMonth() + 1 === month && sale.date.getFullYear() === year);
+  return franchise.branch.map(branch => ({
+     branch: branch,
+     greaterAmount: countbranch.reduce((accum, curr) =>(branch === curr.branch) ? accum + machinePrice(curr.components) : accum, 0)
+    }))
+    .reduce((accum, curr) => (curr.greaterAmount > accum.greaterAmount ? curr : accum), {branch: "", greaterAmount: 0})
+    .branch;    
+}
 
+console.log('best branch was: ' + branchOfTheMonth(1, 2019));
 
 //3-a
   const renderPerMonth = () => {
@@ -212,5 +353,4 @@ console.log('sales for branch Centro', salesForBranch('Centro'));
     }
     
     renderPerMonth()
-
     
