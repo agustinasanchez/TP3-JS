@@ -91,6 +91,7 @@ body .main-section table {
   background-color: #85b1d4;
   width: 100%;
   text-align: center;
+  display: none;
 }
 
 body .main-section table td {
