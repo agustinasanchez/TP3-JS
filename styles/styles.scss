@@ -25,7 +25,7 @@ $colorInput: #fff;
 $colorBack: #085f63;
 $color-darkTitle: #292830;
 $color-textHeader: #103c42;
-$color-body: #BA5370;
+$color-body: linear-gradient(90deg, #BF4222, #E30F87);
 
 body {
   font-family: $font;
@@ -34,7 +34,7 @@ body {
     background-image: url(../images/banner.jpg);
     justify-content: center;
     width: 100%;
-    height: 300px;
+    height: 250px;
     .main-banner {
       margin: auto;
       overflow: hidden;
@@ -66,10 +66,9 @@ body {
       display: none;
       width: 45%;
       position: absolute;
-      background-color: $color-body;
+      background: linear-gradient(90deg, #BF4222, #E30F87);
       .buttom1{
         border: aqua;
-
       }
       p{
         font-size: 16px;

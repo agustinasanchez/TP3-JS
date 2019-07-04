@@ -21,7 +21,8 @@ time, mark, audio, video {
 
 body {
   font-family: "Roboto Mono", monospace;
-  background: #BA5370;
+  background: -webkit-gradient(linear, left top, right top, from(#BF4222), to(#E30F87));
+  background: linear-gradient(90deg, #BF4222, #E30F87);
 }
 
 body .container {
@@ -30,7 +31,7 @@ body .container {
       -ms-flex-pack: center;
           justify-content: center;
   width: 100%;
-  height: 300px;
+  height: 250px;
 }
 
 body .container .main-banner {
@@ -73,7 +74,8 @@ body .main-section .newSale {
   display: none;
   width: 45%;
   position: absolute;
-  background-color: #BA5370;
+  background: -webkit-gradient(linear, left top, right top, from(#BF4222), to(#E30F87));
+  background: linear-gradient(90deg, #BF4222, #E30F87);
 }
 
 body .main-section .newSale .buttom1 {
