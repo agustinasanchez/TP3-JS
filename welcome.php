@@ -22,7 +22,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <div class="ctn-welcome">
             
             <img src="image/banner.jpg" alt="" class="logo-welcome">
-            <h1 class="title-welcome">Bienvenido lo<b>LOGRASTE</b></h1>
+            <h1 class="title-welcome">Ingresaste a<b>GRAGGA</b></h1>
             <a href="../login-register/page.html" class="close-sesion">Registro de Ventas</a>
         </div>
     </body>

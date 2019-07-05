@@ -38,45 +38,43 @@ var franchise = {
     { component: "RAM Quinston", price: 110 },
     { component: "RAM Quinston Fury", price: 230 },
   ]
-
 };
+
+let franchiseSales = JSON.parse(localStorage.getItem('franchiseSales')) || franchise.sales;
 
 const CreateTable = () => {
   let table = document.getElementById('table')
   table.innerHTML = ""
 
-  franchise.sales.forEach(e => {
-  let row = document.createElement('tr')
-  let cellDate = document.createElement('td')
-  
-  cellDate.innerText =`${e.date.getMonth() + 1}/${e.date.getFullYear()}`
-  row.appendChild(cellDate)
-  let cellSeller = document.createElement('td')
-  cellSeller.innerText = e.seller
-  row.appendChild(cellSeller)
-  let cellComponents = document.createElement('td')
-  cellComponents.innerText = e.components
-  row.appendChild(cellComponents)
-  
-  let cellBranch = document.createElement('td')
-  cellBranch.innerText = e.branch
-  row.appendChild(cellBranch)
+  franchiseSales.forEach(e => {
+    let row = document.createElement('tr')
+    let cellDate = document.createElement('td')
+    
+    // cellDate.innerText =`${e.date.getMonth() + 1}/${e.date.getFullYear()}`
+    console.log('datos de la venta: ', e.getMonth);
+    cellDate.innerText =``
+    row.appendChild(cellDate)
+    let cellSeller = document.createElement('td')
+    cellSeller.innerText = e.seller
+    row.appendChild(cellSeller)
+    let cellComponents = document.createElement('td')
+    cellComponents.innerText = e.components
+    row.appendChild(cellComponents)
+    
+    let cellBranch = document.createElement('td')
+    cellBranch.innerText = e.branch
+    row.appendChild(cellBranch)
 
-  let cellMachinePrice = document.createElement('td')
-  cellMachinePrice.innerText = machinePrice(e.components)
-  row.appendChild(cellMachinePrice)
-  table.appendChild(row)
-  
+    let cellMachinePrice = document.createElement('td')
+    cellMachinePrice.innerText = machinePrice(e.components)
+    row.appendChild(cellMachinePrice)
+    table.appendChild(row)
   })
 }
  
-//const allComponents = franchise.priceList.map(({component}) => component) // esto seria lo del modal
 const showOptions = () => {
   let divShow = document.getElementById('newSale')
   divShow.style.display = 'block'
-  
-  
-  
 }
 
 const newSale = () => {
@@ -93,11 +91,13 @@ const newSale = () => {
   sale.seller = seller.value
   let branch = document.getElementById('branch')
   sale.branch = branch.value
-  franchise.sales.push(sale)
+  // franchise.sales.push(sale);
+  franchiseSales.push(sale);
+  localStorage.setItem('franchiseSales', JSON.stringify(franchiseSales));
   CreateTable()
 
 }
-
+//1a
 const machinePrice = components => {
 let sumComponents = 0
 components.forEach(e => {
@@ -108,7 +108,7 @@ return sumComponents
 } 
 
 console.log(machinePrice(["Monitor ASC 543", "Motherboard MZI" ]))
-
+//1b
 const quantitySalesComponent = (component) =>{
 let count = 0
 franchise.sales.forEach(sale => {
@@ -122,7 +122,7 @@ return count
 }
 
 console.log(quantitySalesComponent("Monitor ASC 543"))
-
+//1c
 const bestSellerMonth = (month, year) => {
 const fileteredSales = franchise.sales.filter(sale => sale.date.getMonth() + 1 === month && sale.date.getFullYear() === year);
 return franchise.sellers
@@ -135,7 +135,7 @@ return franchise.sellers
 }
 
 console.log('best seller was: ' + bestSellerMonth(2, 2019));
-
+//1d
 const salesMonth = (month, year) => {
 let sumMonth = 0
 for (let index = 0; index < franchise.sales.length; index++) {
@@ -149,7 +149,7 @@ return sumMonth
 }
 console.log(salesMonth(1, 2019)); // 1250
 
-
+//1e
 const salesBySeller = name => {
 let sellingSum = 0
 franchise.sales.forEach(e => {
@@ -162,7 +162,7 @@ franchise.sales.forEach(e => {
 return sellingSum
 }
 console.log(salesBySeller("Ada"));
-
+//1f
 const bestSellerComponent = () => {
 let sellingComponent = []
 let nameComponent
@@ -175,8 +175,9 @@ franchise.prices.forEach(e => {
 })
 return nameComponent
 }
-
 console.log(bestSellerComponent() ); 
+
+//1g
 
 const wereThereSales = (month, year) => {
 return salesMonth(month, year) > 0;
@@ -184,17 +185,7 @@ return salesMonth(month, year) > 0;
 
 console.log('hubo ventas?:' , wereThereSales(3, 2019));
 
-for (let index = 0; index < franchise.sales.length; index++) {
-  franchise.sales[index].sucursal = 'Centro'
-
-}
-
-console.log(franchise.sales)
-
-franchise.sales.forEach(sold => {
-sold.branch = 'Centro';
-});
-console.log(franchise.sales);
+//2a
 
 const salesForBranch = (branch) => {
 const sales = franchise.sales;
@@ -205,17 +196,21 @@ return sales
 
 console.log('sales for branch Centro', salesForBranch('Centro'));
 
+//2b
+
 const salesPerSellerOrBranch = (param) => {
-  let sellerOrBranch = 0
-  franchise.sales.forEach( e => {
+  let salesSub = 0
+  franchise.sales.forEach(e => {
     if(e.seller === param || e.branch === param){
-      let totalSales = machinePrice(e.components)
-      sellerOrBranch += totalSales
+      salesSub += machinePrice(e.components)
     }
   })
-  return sellerOrBranch
- // console.log(sellerOrBranch)
+  return salesSub
 }
+
+console.log(salesPerSellerOrBranch("Ada"));
+
+//2c
 
 const branchOfTheMonth = (month, year) => {
   let countbranch = franchise.sales.filter(sale => sale.date.getMonth() + 1 === month && sale.date.getFullYear() === year);
@@ -229,18 +224,22 @@ const branchOfTheMonth = (month, year) => {
 
 console.log('best branch was: ' + branchOfTheMonth(1, 2019));
 
+//3a
+
 const renderPerMonth = () => {
-  let months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
-  let monthsNumber= [1,2,3,4,5,6,7,8,9,10,11,12]
-  let perMonth= 0 
-  
-  for (let i= 0; i< months.length; i++) {
     
-      perMonth= console.log('Total de '+ months[i] + ': ' + salesMonth(monthsNumber[i], 2019));
+  let months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+  let monthsNum = [1,2,3,4,5,6,7,8,9,10,11,12]
+  let perMonth = 0 
+  
+  for (let i= 0; i < months.length; i++) {
+    console.log(`Total de  ${months[i]} : $ ${salesMonth(monthsNum[i], 2019)}`) }
+    return perMonth  
   }
-  return perMonth
-}
-renderPerMonth()
+  
+  renderPerMonth()
+
+//3b
 
 const renderPerBranch = () => {
   let saleBranch
@@ -248,7 +247,21 @@ const renderPerBranch = () => {
     saleBranch = salesPerSellerOrBranch(branch)
     console.log(`El importe total vendido en la sucursal de ${branch} es: $${saleBranch}`)
   })
-  return saleBranch
+  //return saleBranch
 }
 
 renderPerBranch()
+
+//3c
+
+const render = () => {
+  let month = new Date().getMonth()
+  
+  console.log(`Reporte:
+  Ventas del mes: ${renderPerMonth()}
+  Ventas por sucursal: ${renderPerBranch()}
+  Producto estrella: ${bestSellerComponent()}
+  Vendedora que más ingresos generó: ${salesBySeller()}`)
+}
+
+render()
